@@ -34,4 +34,6 @@ git clone https://github.com/vexruna/nvim-dotfiles ~/.config/nvim/
 
 [Alt + hjkl] - Instantly switch between windows in any mode
 
+### TODO
 
+Add a snippet engine and nvim-ts-autotag
