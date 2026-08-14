@@ -6,10 +6,12 @@ This is my personal neovim config that I made after nearly 2 weeks of digging an
 
 ### Full list of plugins
 
+    ● base16-nvim
     ● blink.cmp
-    ● catppuccin
+    ● catppuccin (Using Noctalia shell's theme so it gets overwritten)
     ● friendly-snippets
     ● lazy.nvim
+    ● lualine.nvim
     ● mason-lspconfig.nvim
     ● mason.nvim
     ● nvim-lspconfig
@@ -36,4 +38,4 @@ git clone https://github.com/vexruna/nvim-dotfiles ~/.config/nvim/
 
 ### TODO
 
-Add a snippet engine and nvim-ts-autotag
+Add nvim-ts-autotag
