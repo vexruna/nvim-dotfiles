@@ -80,12 +80,11 @@
     ---------------
     --- Plugins ---
     ---------------
-    vim.cmd.colorscheme("catppuccin")
     require("config.lazy")
-    
     require('nvim-treesitter').setup {
 	-- Directory to install parsers and queries to (prepended to `runtimepath` to have priority)
 	install_dir = vim.fn.stdpath('data') .. '/site'
 	}
     require('nvim-treesitter').install { 'rust', 'javascript', 'vim', 'lua', 'c', 'cpp', 'c_sharp', 'html', 'css', 'markdown', 'markdown_inline', 'typescript'}
     require("nvim-tree").setup()
+    require('lualine').setup()
