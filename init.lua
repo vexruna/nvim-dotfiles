@@ -30,10 +30,10 @@
     vim.o.confirm = true
 
     -- Tab settings (holy)
-    vim.o.softtabstop = 4
-    vim.o.shiftwidth = 4
+    vim.o.softtabstop = 2
+    vim.o.shiftwidth = 2
     vim.o.smarttab = false
-    vim.o.tabstop = 8
+    vim.o.tabstop = 4
     vim.o.expandtab = false
 
     vim.opt.clipboard = "unnamedplus"
@@ -70,21 +70,7 @@
 	end,
     })
 
-    -- Create a command `:GitBlameLine` that print the git blame for the current line
-    vim.api.nvim_create_user_command('GitBlameLine', function()
-	local line_number = vim.fn.line('.') -- Get the current line number. See `:h line()`
-	local filename = vim.api.nvim_buf_get_name(0)
-	print(vim.system({ 'git', 'blame', '-L', line_number .. ',+1', filename }):wait().stdout)
-    end, { desc = 'Print the git blame for the current line' })
-
     ---------------
     --- Plugins ---
     ---------------
-    require("config.lazy")
-    require('nvim-treesitter').setup {
-	-- Directory to install parsers and queries to (prepended to `runtimepath` to have priority)
-	install_dir = vim.fn.stdpath('data') .. '/site'
-	}
-    require('nvim-treesitter').install { 'rust', 'javascript', 'vim', 'lua', 'c', 'cpp', 'c_sharp', 'html', 'css', 'markdown', 'markdown_inline', 'typescript'}
-    require("nvim-tree").setup()
-    require('lualine').setup()
+
