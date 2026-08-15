@@ -46,8 +46,6 @@
     ---------------
     vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
     vim.keymap.set('t', '<Esc>', '<C-\\><C-n>')
-    vim.keymap.set({ 'n' }, '<Leader>e', '<cmd>NvimTreeToggle<CR>')
-    vim.keymap.set('n', '<Leader>d', function() vim.diagnostic.open_float() end)
 
     -- Map <A-j>, <A-k>, <A-h>, <A-l> to navigate between windows in any modes
     vim.keymap.set({ 't', 'i' }, '<A-h>', '<C-\\><C-n><C-w>h')
@@ -73,4 +71,7 @@
     ---------------
     --- Plugins ---
     ---------------
-
+	vim.pack.add({
+  'https://github.com/neovim/nvim-lspconfig',
+  'https://github.com/ibhagwan/fzf-lua',
+})
