@@ -67,11 +67,92 @@
 	vim.hl.on_yank()
 	end,
     })
-
+	vim.api.nvim_create_autocmd("Filetype", {
+		pattern = { "html", "shtml", "htm" },
+		callback = function()
+			vim.lsp.start({
+				name = "superhtml",
+				cmd = { "superhtml", "lsp" },
+				root_dir = vim.fs.dirname(vim.fs.find({".git"}, { upward = true })[1])
+			})
+  		end
+	})
     ---------------
     --- Plugins ---
     ---------------
-	vim.pack.add({
-  'https://github.com/neovim/nvim-lspconfig',
-  'https://github.com/ibhagwan/fzf-lua',
+	local plugins = {
+	  { src = 'https://github.com/neovim/nvim-lspconfig' },
+	  { src = 'https://github.com/ibhagwan/fzf-lua' },
+	  { src = 'https://github.com/mason-org/mason.nvim'},
+	  { src = 'https://github.com/nvim-tree/nvim-web-devicons' },
+	  { src = 'https://github.com/nvim-lualine/lualine.nvim' },
+	  { src = 'https://github.com/nvim-treesitter/nvim-treesitter' },
+	  { src = 'https://github.com/Saghen/blink.cmp' },
+	  { src = 'https://github.com/L3MON4D3/LuaSnip' },
+	  { src = 'https://github.com/rafamadriz/friendly-snippets' },
+	  { src = 'https://github.com/nvim-lua/plenary.nvim' },
+	  { src = 'https://github.com/lewis6991/gitsigns.nvim' },
+	  { src = 'https://github.com/folke/which-key.nvim' },
+	  { src = 'https://github.com/stevearc/conform.nvim' },
+	  { src = 'https://github.com/mfussenegger/nvim-lint' },
+	  { src = 'https://github.com/RRethy/base16-nvim' },
+}
+	vim.pack.add(plugins)
+
+	--Setup
+	require("mason").setup()
+	require("lualine").setup()
+	vim.lsp.enable('lua_ls')
+	require("nvim-treesitter").setup()
+	require("nvim-treesitter").install({
+	  'html', 'css', 'lua', 'javascript',
+	})
+
+vim.diagnostic.config({
+  virtual_text = {
+    prefix = "●",
+    spacing = 2,
+  },
+  signs = true,
+  underline = true,
+  severity_sort = true,
+  update_in_insert = false,
 })
+
+vim.lsp.config("lua_ls", {
+  settings = {
+    Lua = {
+      runtime = {
+        version = "LuaJIT",
+      },
+      diagnostics = {
+        globals = { "vim" },
+      },
+      workspace = {
+        checkThirdParty = false,
+      },
+	  completion = {
+		callSnippet = "Replace",
+	  },
+    },
+  },
+})
+require("blink.cmp").setup()
+require("matugen").setup()
+local lualine_config = {
+  options = {
+    theme = 'base16',
+  },
+}
+require('lualine').setup(lualine_config)
+local signal = vim.uv.new_signal()
+
+signal:start(
+  'sigusr1',
+  vim.schedule_wrap(function()
+    package.loaded['matugen'] = nil
+    require('matugen').setup()
+
+    require('lualine').setup(lualine_config)
+  end)
+)
