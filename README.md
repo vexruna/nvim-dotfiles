@@ -4,6 +4,18 @@
 ## Description
 This is my personal neovim config that I made after weeks of digging and absorbing new information.
 ## Structure
+```
+.
+├── init.lua
+├── lua
+│   ├── matugen.lua
+│   └── plugins
+│       └── base16.lua
+├── nvim-pack-lock.json
+├── README.md
+└── tux.jpg
+```
+
 ```init.lua```
 : Where all of the innate editor settings are configured
 
