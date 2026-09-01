@@ -30,8 +30,8 @@
     vim.o.confirm = true
 
     -- Tab settings (holy)
-    vim.o.softtabstop = 2
-    vim.o.shiftwidth = 2
+    vim.o.softtabstop = 4
+    vim.o.shiftwidth = 4
     vim.o.smarttab = false
     vim.o.tabstop = 4
     vim.o.expandtab = false
@@ -107,6 +107,14 @@
 	require("nvim-treesitter").install({
 	  'html', 'css', 'lua', 'javascript',
 	})
+    local capabilities = vim.lsp.protocol.make_client_capabilities()
+	capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+    vim.lsp.config('cssls', {
+	  capabilities = capabilities,
+    })
+	vim.lsp.enable('cssls')
+	vim.lsp.enable('csharp_ls')
 
 vim.diagnostic.config({
   virtual_text = {
@@ -156,3 +164,5 @@ signal:start(
     require('lualine').setup(lualine_config)
   end)
 )
+vim.lsp.enable('biome')
+vim.lsp.enable('vtsls')
