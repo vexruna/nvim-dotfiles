@@ -29,6 +29,7 @@ require("plugins.cssls")
 require("plugins.luals")
 require("plugins.conform")
 require("plugins.nvim-lint")
+require("plugins.biome")
 --Setup
 require("presence").setup()
 require("nvim-treesitter").setup()
@@ -40,9 +41,8 @@ require("nvim-treesitter").install({
 })
 require("mason").setup()
 require("lualine").setup()
-vim.lsp.enable("lua_ls")
 require("blink.cmp").setup()
-vim.lsp.enable("biome")
+vim.lsp.enable("lua_ls")
 vim.lsp.enable("csharp_ls")
 
 vim.diagnostic.config({
@@ -65,6 +65,7 @@ local lualine_config = {
 }
 require("lualine").setup(lualine_config)
 local signal = vim.uv.new_signal()
+
 -- Updates the colorscheme when it changes without restarting
 signal:start(
 	"sigusr1",
