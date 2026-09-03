@@ -8,10 +8,16 @@ This is my personal neovim config that I made after weeks of digging and absorbi
 .
 ├── init.lua
 ├── lua
+│   ├── autocommands.lua
+│   ├── keymaps.lua
 │   ├── matugen.lua
-│   └── plugins
-│       └── base16.lua
-├── nvim-pack-lock.json
+│   ├── plugins
+│   │   ├── base16.lua
+│   │   ├── conform.lua
+│   │   ├── cssls.lua
+│   │   ├── luals.lua
+│   │   └── nvim-lint.lua
+│   └── plugins.lua
 ├── README.md
 └── tux.jpg
 ```
@@ -24,9 +30,9 @@ This is my personal neovim config that I made after weeks of digging and absorbi
 
 ```lua/plugins/base16.lua```
 : base16-nvim package looks for matugen and then runs its setup config, afaik
-### TODO
-move plugin configuration to ```lua/plugins/*.lua``` for every plugin
+
 ### Installing
 ```git clone https://github.com/vexruna/nvim-dotfiles ~/.config/nvim/``` or clone anywhere else and point neovim to get it
 ### Keymaps
 [Alt + hjkl] - Instantly switch between windows in any mode
+[Space + e] - Toggle neo-tree
